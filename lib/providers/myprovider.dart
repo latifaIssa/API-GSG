@@ -2,16 +2,22 @@ import 'package:api_gsg/data/api_helper.dart';
 import 'package:api_gsg/data/db_helper.dart';
 import 'package:api_gsg/models/product_responsel.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomeProvider extends ChangeNotifier {
   List<ProductResponse> cartProducts;
   List<ProductResponse> favouriteProducts;
-
   List<String> allCategories;
   List<ProductResponse> allProducts;
   List<ProductResponse> categoryProducts;
   ProductResponse selectedProduct;
   String selectedCategory = '';
+  Set<Marker> markers = {};
+  addMarkerToSet(Marker marker) {
+    this.markers.add(marker);
+    notifyListeners();
+  }
+
   getAllCategories() async {
     List<dynamic> categories = await ApiHelper.apiHelper.getAllCategories();
     allCategories = categories.map((e) => e.toString()).toList();

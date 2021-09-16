@@ -1,5 +1,6 @@
 import 'package:api_gsg/data/db_helper.dart';
 import 'package:api_gsg/providers/myprovider.dart';
+import 'package:api_gsg/ui/google_map.dart';
 import 'package:api_gsg/ui/splach_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +11,7 @@ void main() async {
   runApp(ChangeNotifierProvider<HomeProvider>(
     create: (context) => HomeProvider(),
     child: MaterialApp(
-      home: SplachScreen(),
+      home: GoogleMapPage(),
     ),
   ));
 }
