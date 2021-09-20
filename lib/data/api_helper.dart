@@ -6,35 +6,36 @@ class ApiHelper {
   ApiHelper._();
   static ApiHelper apiHelper = ApiHelper._();
   Dio dio = Dio();
+
   Future<List<dynamic>> getAllCategories() async {
-    String url = 'https://fakestoreapi.com/products/categories';
+    String url = '$apiUrl/categories';
     Response response = await dio.get(url);
     List<dynamic> categories = response.data;
     return categories;
   }
 
   Future<List<dynamic>> getCategoryProducts(String categoryName) async {
-    String url = 'https://fakestoreapi.com/products/category/$categoryName';
+    String url = $apiUrl/category/$categoryName';
     Response response = await dio.get(url);
     List<dynamic> products = response.data;
     return products;
   }
 
   Future<List<dynamic>> getAllProducts() async {
-    String url = 'https://fakestoreapi.com/products';
+    String url = apiUrl;
     Response response = await dio.get(url);
     List<dynamic> products = response.data;
     return products;
   }
 
   Future<dynamic> getSpecificProduct(int id) async {
-    String url = 'https://fakestoreapi.com/products/$id';
+    String url = '$apiUrl/$id';
     Response response = await dio.get(url);
     return response.data;
   }
 
   login(String email, String password, String fcmToken) async {
-    String url = 'https://dashboard.giftyonline.ae/api/v1/login';
+    String url = '$dashboardUrl/login';
     Response response = await Dio().post(url, data: {
       'email': email,
       'password': password,
@@ -46,7 +47,7 @@ class ApiHelper {
 
   addOrRemoveFromFavourite(int productId) async {
     String url =
-        'https://dashboard.giftyonline.ae/api/v1/add_or_remove_product_from_favourite/$productId';
+        '$dashboardUrl/add_or_remove_product_from_favourite/$productId';
     try {
       Response response = await Dio().post(url,
           options: Options(headers: {
